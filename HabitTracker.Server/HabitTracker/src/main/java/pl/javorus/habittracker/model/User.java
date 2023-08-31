@@ -30,7 +30,8 @@ public class User {
         this.tags = tags;
     }
 
-    public User(String username, String password) {
+    public User(UUID userId, String username, String password) {
+        this.userId = userId;
         this.username = username;
         this.password = password;
     }

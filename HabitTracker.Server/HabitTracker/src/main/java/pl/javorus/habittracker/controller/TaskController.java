@@ -26,5 +26,9 @@ public class TaskController {
     public Task getTask(@PathVariable UUID taskId) {
         return taskService.getTask(taskId);
     }
+    @GetMapping("/{taskId}")
+    public Task getAllForUser(@PathVariable UUID taskId) {
+        return taskService.getTask(taskId);
+    }
 
 }

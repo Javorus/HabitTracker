@@ -2,6 +2,8 @@ package pl.javorus.habittracker.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,6 +20,8 @@ public class Task {
 
     private String title;
     private String description;
+    private LocalDate startDate;
+    private LocalTime duration;
 
     @ManyToMany
     @JoinTable(
@@ -28,19 +32,30 @@ public class Task {
     private List<Tag> tags;
 
 
-    public Task(UUID taskId, User user, String title, String description, List<Tag> tags) {
+    public Task(UUID taskId, User user, String title, String description, LocalDate startDate, LocalTime duration, List<Tag> tags) {
         this.taskId = taskId;
         this.user = user;
         this.title = title;
         this.description = description;
+        this.startDate = startDate;
+        this.duration = duration;
         this.tags = tags;
     }
 
-    public Task(User user, String title, String description, List<Tag> tags) {
-        this.user = user;
-        this.title = title;
-        this.description = description;
-        this.tags = tags;
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalTime getDuration() {
+        return duration;
+    }
+
+    public void setDuration(LocalTime duration) {
+        this.duration = duration;
     }
 
     public Task() {
