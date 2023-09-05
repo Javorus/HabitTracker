@@ -8,6 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface TagRepository extends JpaRepository<Tag, UUID> {
-    List<Tag> findAllByUser_UserId(UUID userId);
+public interface TagRepository extends JpaRepository<Tag, String> {
+    List<Tag> findAllByUserId(String userId);
 }

@@ -5,7 +5,7 @@ import pl.javorus.habittracker.model.User;
 
 import java.util.UUID;
 
-public interface UserRepository extends JpaRepository<User, UUID> {
+public interface UserRepository extends JpaRepository<User, String> {
     User findByUsername(String username);
 
 }

@@ -18,20 +18,20 @@ public class TagService {
     }
 
     public Tag createTag(Tag tag) {
-        UUID tagId = UUID.randomUUID();
+        String tagId = UUID.randomUUID().toString();
         tag.setTagId(tagId);
         return tagRepository.save(tag);
     }
 
-    public Tag getTag(UUID tagId) {
+    public Tag getTag(String tagId) {
         return tagRepository.findById(tagId).orElse(null);
     }
 
-    public List<Tag> getTagsByUser(UUID userId) {
-        return tagRepository.findAllByUser_UserId(userId);
+    public List<Tag> getTagsByUser(String userId) {
+        return tagRepository.findAllByUserId(userId);
     }
 
-    public Tag updateTag(UUID tagId, Tag updatedTag) {
+    public Tag updateTag(String tagId, Tag updatedTag) {
         Tag existingTag = tagRepository.findById(tagId).orElse(null);
         if (existingTag != null) {
             existingTag.setName(updatedTag.getName());
@@ -40,7 +40,7 @@ public class TagService {
         return null;
     }
 
-    public void deleteTag(UUID tagId) {
+    public void deleteTag(String tagId) {
         tagRepository.deleteById(tagId);
     }
 }

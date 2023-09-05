@@ -24,22 +24,22 @@ public class TagController {
     }
 
     @GetMapping("/{tagId}")
-    public Tag getTag(@PathVariable UUID tagId) {
+    public Tag getTag(@PathVariable String tagId) {
         return tagService.getTag(tagId);
     }
 
     @GetMapping("/user/{userId}")
-    public List<Tag> getTagsByUser(@PathVariable UUID userId) {
+    public List<Tag> getTagsByUser(@PathVariable String userId) {
         return tagService.getTagsByUser(userId);
     }
 
     @PutMapping("/{tagId}")
-    public Tag updateTag(@PathVariable UUID tagId, @RequestBody Tag tag) {
+    public Tag updateTag(@PathVariable String tagId, @RequestBody Tag tag) {
         return tagService.updateTag(tagId, tag);
     }
 
     @DeleteMapping("/{tagId}")
-    public void deleteTag(@PathVariable UUID tagId) {
+    public void deleteTag(@PathVariable String tagId) {
         tagService.deleteTag(tagId);
     }
 }

@@ -1,18 +1,23 @@
 package pl.javorus.habittracker.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.UUID;
 
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "tasks")
 public class Task {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID taskId;
+    private String taskId;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -32,74 +37,13 @@ public class Task {
     private List<Tag> tags;
 
 
-    public Task(UUID taskId, User user, String title, String description, LocalDate startDate, LocalTime duration, List<Tag> tags) {
+    public Task(String taskId, User user, String title, String description, LocalDate startDate, LocalTime duration, List<Tag> tags) {
         this.taskId = taskId;
         this.user = user;
         this.title = title;
         this.description = description;
         this.startDate = startDate;
         this.duration = duration;
-        this.tags = tags;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalTime getDuration() {
-        return duration;
-    }
-
-    public void setDuration(LocalTime duration) {
-        this.duration = duration;
-    }
-
-    public Task() {
-
-    }
-
-
-    public UUID getTaskId() {
-        return taskId;
-    }
-
-    public void setTaskId(UUID taskId) {
-        this.taskId = taskId;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<Tag> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
 }

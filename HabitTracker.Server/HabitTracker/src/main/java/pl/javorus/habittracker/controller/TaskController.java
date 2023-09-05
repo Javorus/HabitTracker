@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.javorus.habittracker.model.Task;
 import pl.javorus.habittracker.service.TaskService;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -23,12 +24,12 @@ public class TaskController {
     }
 
     @GetMapping("/{taskId}")
-    public Task getTask(@PathVariable UUID taskId) {
+    public Task getTask(@PathVariable String taskId) {
         return taskService.getTask(taskId);
     }
-    @GetMapping("/{taskId}")
-    public Task getAllForUser(@PathVariable UUID taskId) {
-        return taskService.getTask(taskId);
+    @GetMapping("/{userId}")
+    public List<Task> getAllTasksForUser(@PathVariable String userId) {
+        return taskService.getAllTasksForUser(userId);
     }
 
 }

@@ -17,16 +17,18 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User createUser(SignRequest signRequest) {
-
-        return userRepository.save(new User( UUID.randomUUID(), signRequest.getUsername(), signRequest.getPassword()));
+    public User createUser(User user) {
+        return userRepository.save(user);
     }
 
-    public User getUser(UUID userId) {
+    public User getUser(String userId) {
         return userRepository.findById(userId).orElse(null);
     }
 
-    public User getUserByUsername(String username){return userRepository.findByUsername(username); }
+
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 
 
 }

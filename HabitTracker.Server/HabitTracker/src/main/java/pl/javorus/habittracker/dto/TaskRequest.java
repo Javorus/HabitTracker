@@ -10,9 +10,9 @@ public class TaskRequest {
     private String description;
     private LocalDate startDate;
     private LocalTime duration;
-    private List<UUID> tagIds;
+    private List<String> tagIds;
 
-    public TaskRequest(String title, String description, LocalDate startDate, LocalTime duration, List<UUID> tagIds) {
+    public TaskRequest(String title, String description, LocalDate startDate, LocalTime duration, List<String> tagIds) {
         this.title = title;
         this.description = description;
         this.startDate = startDate;
@@ -52,11 +52,11 @@ public class TaskRequest {
         this.duration = duration;
     }
 
-    public List<UUID> getTagIds() {
+    public List<String> getTagIds() {
         return tagIds;
     }
 
-    public void setTagIds(List<UUID> tagIds) {
+    public void setTagIds(List<String> tagIds) {
         this.tagIds = tagIds;
     }
 }

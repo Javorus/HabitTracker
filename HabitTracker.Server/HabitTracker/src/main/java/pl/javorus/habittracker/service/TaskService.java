@@ -19,14 +19,18 @@ public class TaskService {
 
     public Task createTask(Task task) {
 
-        UUID taskId = UUID.randomUUID();
+        String taskId = UUID.randomUUID().toString();
         task.setTaskId(taskId);
 
         return taskRepository.save(task);
     }
 
-    public Task getTask(UUID taskId) {
+    public Task getTask(String taskId) {
         return taskRepository.findById(taskId).orElse(null);
+
     }
 
+    public List<Task> getAllTasksForUser(String userId) {
+        return taskRepository.findAllByUser_Id(userId);
+    }
 }
