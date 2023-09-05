@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./authContext";
 
 const Register = () => {
+
+  const authContext = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,6 +21,8 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Registering user:", { username, password });
+    authContext.register(username, password)
+
     setUsername("");
     setPassword("");
     navigate("/login");

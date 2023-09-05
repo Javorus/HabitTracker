@@ -18,9 +18,9 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         console.log(authContext.isAuthenticated);
-        authContext.setAuthenticated(true);
         e.preventDefault();
-        console.log("Registering user:", { username, password });
+        console.log("Logging user:", { username, password });
+        authContext.login(username, password);
         setUsername("");
         setPassword("");
         console.log(authContext.isAuthenticated);
