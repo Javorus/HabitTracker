@@ -1,7 +1,9 @@
 package pl.javorus.habittracker.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +16,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
@@ -23,19 +26,12 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Task> tasks;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Tag> tags;
-
-
-    public User(String id, String username, String password, List<Task> tasks, List<Tag> tags) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.tasks = tasks;
-        this.tags = tags;
-    }
 
     public User(String id, String username, String password) {
         this.id = id;

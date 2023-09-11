@@ -26,9 +26,9 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<String> signIn(@RequestBody SignRequest signRequest) {
-        User existingUser = userService.getUserByUsername(signRequest.getUsername());
+        User existingUser = userService.getUserByUsername(signRequest.username());
 
-        if (existingUser != null && existingUser.getPassword().equals(signRequest.getPassword())) {
+        if (existingUser != null && existingUser.getPassword().equals(signRequest.password())) {
             return ResponseEntity.ok(existingUser.getId());
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
@@ -37,14 +37,14 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody SignRequest signRequest) {
-        User existingUser = userService.getUserByUsername(signRequest.getUsername());
+        User existingUser = userService.getUserByUsername(signRequest.username());
 
         if (existingUser == null) {
             User createdUser = userService.createUser(
                     new User(
                             UUID.randomUUID().toString(),
-                            signRequest.getUsername(),
-                            signRequest.getPassword()
+                            signRequest.username(),
+                            signRequest.password()
                     ));
 
 

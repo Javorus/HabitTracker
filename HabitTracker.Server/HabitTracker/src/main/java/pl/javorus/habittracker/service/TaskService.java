@@ -19,8 +19,6 @@ public class TaskService {
 
     public Task createTask(Task task) {
 
-        String taskId = UUID.randomUUID().toString();
-        task.setTaskId(taskId);
 
         return taskRepository.save(task);
     }

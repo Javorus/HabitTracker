@@ -18,8 +18,6 @@ public class TagService {
     }
 
     public Tag createTag(Tag tag) {
-        String tagId = UUID.randomUUID().toString();
-        tag.setTagId(tagId);
         return tagRepository.save(tag);
     }
 
@@ -27,7 +25,7 @@ public class TagService {
         return tagRepository.findById(tagId).orElse(null);
     }
 
-    public List<Tag> getTagsByUser(String userId) {
+    public List<Tag> getTagsByUserId(String userId) {
         return tagRepository.findAllByUserId(userId);
     }
 

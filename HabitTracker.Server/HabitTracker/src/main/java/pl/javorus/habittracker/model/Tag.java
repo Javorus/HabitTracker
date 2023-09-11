@@ -1,15 +1,20 @@
 package pl.javorus.habittracker.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tags")
 public class Tag {
@@ -18,19 +23,9 @@ public class Tag {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     private String name;
 
-
-    public Tag(String tagId, User user, String name) {
-        this.tagId = tagId;
-        this.user = user;
-        this.name = name;
-    }
-
-    public Tag(User user, String name) {
-        this.user = user;
-        this.name = name;
-    }
 }

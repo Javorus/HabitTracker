@@ -1,6 +1,9 @@
 package pl.javorus.habittracker.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tasks")
 public class Task {
@@ -21,6 +25,7 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
 
     private String title;
@@ -35,15 +40,4 @@ public class Task {
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private List<Tag> tags;
-
-
-    public Task(String taskId, User user, String title, String description, LocalDate startDate, LocalTime duration, List<Tag> tags) {
-        this.taskId = taskId;
-        this.user = user;
-        this.title = title;
-        this.description = description;
-        this.startDate = startDate;
-        this.duration = duration;
-        this.tags = tags;
-    }
 }
