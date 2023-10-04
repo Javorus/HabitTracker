@@ -8,4 +8,6 @@ import java.util.UUID;
 
 public interface TaskRepository extends JpaRepository<Task, String> {
     List<Task> findAllByUser_Id(String userId);
+
+    List<Task> findAllByUser_IdAndTags_tagId(String userId, String tagId);
 }

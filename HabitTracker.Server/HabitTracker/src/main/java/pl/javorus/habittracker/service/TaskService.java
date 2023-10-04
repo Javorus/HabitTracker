@@ -19,7 +19,6 @@ public class TaskService {
 
     public Task createTask(Task task) {
 
-
         return taskRepository.save(task);
     }
 
@@ -30,5 +29,9 @@ public class TaskService {
 
     public List<Task> getAllTasksForUser(String userId) {
         return taskRepository.findAllByUser_Id(userId);
+    }
+
+    public List<Task> getAllTasksForUserWithTag(String userId, String tagId) {
+        return taskRepository.findAllByUser_IdAndTags_tagId(userId, tagId);
     }
 }
