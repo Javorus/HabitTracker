@@ -6,6 +6,8 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const authContext = useAuth();
 
   const handleUsernameChange = (e) => {
@@ -16,15 +18,15 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-    const handleSubmit = (e) => {
-        console.log(authContext.isAuthenticated);
-        e.preventDefault();
-        console.log("Logging user:", { username, password });
-        authContext.login(username, password);
-        setUsername("");
-        setPassword("");
-        console.log(authContext.isAuthenticated);
-  };
+  async function handleSubmit(e) {
+    console.log(authContext.isAuthenticated);
+    e.preventDefault();
+    console.log("Logging user:", { username, password });
+    if (await authContext.login(username, password)) {
+      navigate(`/tags`);
+    }
+    console.log(authContext.isAuthenticated);
+  }
 
   return (
     <div>

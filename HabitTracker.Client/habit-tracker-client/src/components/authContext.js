@@ -1,5 +1,4 @@
-
-import { apiClient } from "./ApiClient";
+import { apiClient } from "./api/ApiClient";
 import { createContext, useContext, useState } from "react";
 
 export const AuthContext = createContext();
@@ -7,6 +6,11 @@ export const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export default function AuthProvider({ children }) {
+
+  const [isAuthenticated, setAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
+
+
   function logout() {
     setUser(null);
     setAuthenticated(false);
@@ -40,15 +44,15 @@ export default function AuthProvider({ children }) {
       console.log('User ID:', response.data);
       setAuthenticated(true);
       setUser(response.data);
+      return true;
     }
     else {
       console.log('Invalid credentials');
+      return false;
     }
     
   }
 
-  const [isAuthenticated, setAuthenticated] = useState(false);
-  const [user, setUser] = useState(null);
 
   return (
     <AuthContext.Provider
